@@ -1,0 +1,14 @@
+{
+    "applications": {
+        "TRINCA": {
+            "applicationId": "OlBVD14oguSdo4Q5DSHPXGQ3SNT599AV9vPGfidO", 
+            "masterKey": "MVCPRz3MsOZ7zdFGjGzBkhzAMp85DdbgfGfB4O4L"
+        }, 
+        "_default": {
+            "link": "TRINCA"
+        }
+    }, 
+    "global": {
+        "parseVersion": "1.2.19"
+    }
+}

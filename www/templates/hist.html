@@ -1,0 +1,209 @@
+<ion-content has-header="true" xmlns="http://www.w3.org/1999/html">
+
+
+<ion-list>
+    <ion-item class="trinca-item" ng-repeat="draw in closedDraws">
+
+        <div class="row titulo">
+            <div class="col col-33">
+                TRINCA#{{draw.get("drawNum")}}
+            </div>
+            <div class="col fecha">
+                Sorteo :{{draw.get("drawDate") | date:'yyyy-MM-dd' }}
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                Apuesta Trinca:
+            </div>
+        </div>
+        <div class="row">
+            <div class="col figura bola">
+                <div class="num-outer">
+                    <div class="num">
+                        {{draw.get("betNum1")}}
+                    </div>
+                </div>
+            </div>
+            <div class="col figura bola">
+                <div class="num-outer">
+                    <div class="num">
+                        {{draw.get("betNum2")}}
+                    </div>
+                </div>
+            </div>
+            <div class="col figura bola">
+                <div class="num-outer">
+                    <div class="num">
+                        {{draw.get("betNum3")}}
+                    </div>
+                </div>
+            </div>
+            <div class="col figura bola">
+                <div class="num-outer">
+                    <div class="num">
+                        {{draw.get("betNum4")}}
+                    </div>
+                </div>
+            </div>
+            <div class="col figura bola">
+                <div class="num-outer">
+                    <div class="num">
+                        {{draw.get("betNum5")}}
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col figura estrella">
+                <div class="num-outer">
+                    <div class="num">
+                        {{draw.get("betStar1")}}
+                    </div>
+                </div>
+            </div>
+            <div class="col figura estrella">
+                <div class="num-outer">
+                    <div class="num">
+                        {{draw.get("betStar2")}}
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="row">
+            <div class="col">
+                Resultado real del sorteo:
+            </div>
+        </div>
+        <div class="row">
+            <div class="col figura bola">
+                <div class="num-outer">
+                    <div class="num">
+                        {{draw.get("realNum1")}}
+                    </div>
+                </div>
+            </div>
+            <div class="col figura bola">
+                <div class="num-outer">
+                    <div class="num">
+                        {{draw.get("realNum2")}}
+                    </div>
+                </div>
+            </div>
+            <div class="col figura bola">
+                <div class="num-outer">
+                    <div class="num">
+                        {{draw.get("realNum3")}}
+                    </div>
+                </div>
+            </div>
+            <div class="col figura bola">
+                <div class="num-outer">
+                    <div class="num">
+                        {{draw.get("realNum4")}}
+                    </div>
+                </div>
+            </div>
+            <div class="col figura bola">
+                <div class="num-outer">
+                    <div class="num">
+                        {{draw.get("realNum5")}}
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col figura estrella">
+                <div class="num-outer">
+                    <div class="num">
+                        {{draw.get("realStar1")}}
+                    </div>
+                </div>
+            </div>
+            <div class="col figura estrella">
+                <div class="num-outer">
+                    <div class="num">
+                        {{draw.get("realStar2")}}
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="row info-row">
+            <div class="col col-50">
+                <div class="item item-avatar">
+                    <img src="../www/img/counter.png">
+
+                    <p>Tus TRINCAS</p>
+
+                    <h2>{{sumMyTickets(draw)}}</h2>
+                </div>
+            </div>
+            <div class="col col-50">
+                <div class="item item-avatar">
+                    <img src="../www/img/percent.png">
+
+                    <p>Probabilidad</p>
+
+                    <h2>{{getMyProbForDraw(draw)}}</h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="row info-row">
+            <div class="col col-50">
+                <div class="item item-avatar">
+                    <img src="../www/img/crowd.png">
+
+                    <p>Han participado</p>
+
+                    <h2>{{draw.get("participantCount")}}</h2>
+                </div>
+            </div>
+            <div class="col col-50">
+                <div class="item item-avatar">
+                    <img src="../www/img/euro.png">
+
+                    <p>Premio entregado</p>
+
+                    <h2>{{draw.get("prize")}}</h2>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row info-row">
+            <div class="col">
+                <div class="item item-avatar">
+                    <img src="../www/img/winner.png">
+
+                    <p>Ganador</p>
+
+                    <h2>{{getWinner(draw)}}</h2>
+
+                </div>
+            </div>
+        </div>
+
+
+    </ion-item>
+</ion-list>
+
+<script id="my-popover.html" type="text/ng-template">
+    <ion-popover-view>
+        <ion-header-bar>
+            <h1 class="title">My Popover Title</h1>
+        </ion-header-bar>
+        <ion-content>
+            Hello!
+        </ion-content>
+    </ion-popover-view>
+</script>
+
+
+</ion-content>

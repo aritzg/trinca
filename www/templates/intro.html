@@ -1,0 +1,36 @@
+<ion-content has-header="false" id="intro" scroll="false" class="user-form">
+
+
+    <div id="intro-logo"></div>
+
+    <div id="intro-buttons">
+
+        <label class="item item-input">
+            <span class="input-label">Email</span>
+            <input type="text" ng-model="login.username">
+        </label>
+        <label class="item item-input">
+            <span class="input-label">Password</span>
+            <input type="password" ng-model="login.password">
+        </label>
+
+        <button class="button button-full button-positive" ng-click="login()">
+            LOG IN
+        </button>
+        <a nav-clear class="button button-full button-dark icon-right ion-social-facebook"  ng-click="withFB()">
+            LogIn with FaceBook
+        </a>
+        <div class="assertive" ng-show="error.message">{{error.message}}</div>
+    </div>
+
+    <div class="bar bar-footer bar-dark">
+
+
+        <div class="button-bar">
+            <a class="button" ng-click="forgot()">Olvidaste tu pass?</a>
+            <a class="button" ng-click="signUp()"> Nuevo en Trinca?</a>
+        </div>
+    </div>
+
+</ion-content>
+

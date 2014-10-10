@@ -1,0 +1,57 @@
+
+// Use Parse.Cloud.define to define as many cloud functions as you want.
+// For example:
+Parse.Cloud.define("hello", function(request, response) {
+  response.success("Hello world!");
+});
+
+
+Parse.Cloud.afterSave("Message", function(request) {
+  query = new Parse.Query("User");
+  if(request.object.get("type")=='broadcast' && request.object.get("state")=='new'){
+  query.find({
+    success: function(results) {
+    
+      for (var i = 0; i < results.length; i++) {
+        var user = results[i]; 
+   	var SentMessage = Parse.Object.extend("SentMessage");
+	var sentMessage = new SentMessage();
+	sentMessage.set("toUser", user);
+	sentMessage.set("message", request.object);
+	sentMessage.save({success: function () {}});
+      }
+	request.object.set("state", "sent");
+	request.object.save({success: function () {}});
+  },
+  error: function(error) {
+   
+  }
+  });
+
+}
+});
+
+Parse.Cloud.afterSave("_User", function(request) {
+  
+  if(!request.object.existed()){
+    request.object.set("state", "created");
+    request.object.save({success: function () {}});
+
+    query = new Parse.Query("Message");
+    query.equalTo("type", "welcome");
+
+	query.find({
+	    success: function(results) {
+	       message = results[0];
+	      var sentMessage = new SentMessage();
+	      sentMessage.set("toUser", request.object);
+	      sentMessage.set("message", message);
+	      sentMessage.save({success: function () {}});
+	  },
+	  error: function(error) {
+	   
+	  }
+	  });
+
+  }
+});
