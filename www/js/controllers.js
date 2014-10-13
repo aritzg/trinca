@@ -327,16 +327,6 @@ angular.module('trinca.controllers', [])
             return TicketService.getMyProbForDraw(draw);
         }
 
-        $scope.getWinner = function (draw) {
-            var winner = draw.get("winner");
-            winner.fetch({
-                success: function(winner) {
-                    $scope.$apply();
-                }
-            });
-
-            return winner.get("email");
-        }
 
 
     })
@@ -350,7 +340,7 @@ angular.module('trinca.controllers', [])
         $scope.activeDraws;
 
 
-        //Most freq. nums
+       //Most freq. nums
         var Draw = Parse.Object.extend("Draw");
         var query = new Parse.Query(Draw);
         query.equalTo("type", "stat");

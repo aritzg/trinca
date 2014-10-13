@@ -154,10 +154,30 @@
     text-align: center;
 }
 
-.info-row{
+.info-box{
+    padding: 6px;
 
 }
 
+.info-box > img:first-child{
+    top: 24px;
+}
+
+.info-box .title{
+
+    width: 100%;
+    text-align: center;
+
+
+}
+
+.info-box .value{
+    padding-left: 51px;
+    width: 100%;
+    text-align: center;
+    font-size: 20px;
+
+}
 
 /*MESSAGES*/
 
@@ -211,7 +231,7 @@ section.parallax .pixel {
     border-radius: 15px;
     background: blue;
 }
-
+/**/
 
 
 

@@ -17,6 +17,7 @@ angular.module('trinca.services.draws', [])
                 //query.doesNotExist("closedDate");
                 query.descending("drawDate");
                 query.equalTo("type", "bet");
+                query.include("winner");
                 query.find({
                     success: function (results) {
                         $rootScope.draws = results;

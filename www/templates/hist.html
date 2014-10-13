@@ -136,42 +136,35 @@
 
         <div class="row info-row">
             <div class="col col-50">
-                <div class="item item-avatar">
+                <div class="item item-avatar info-box">
                     <img src="../www/img/counter.png">
-
-                    <p>Tus TRINCAS</p>
-
-                    <h2>{{sumMyTickets(draw)}}</h2>
+                    <h2 class="title">tus TRINCAS</h2>
+                    <p class="value">{{sumMyTickets(draw)}}</p>
                 </div>
             </div>
             <div class="col col-50">
-                <div class="item item-avatar">
+                <div class="item item-avatar info-box">
                     <img src="../www/img/percent.png">
-
-                    <p>Probabilidad</p>
-
-                    <h2>{{getMyProbForDraw(draw)}}</h2>
+                    <h2 class="title">Probabilidad</h2>
+                    <p class="value">{{getMyProbForDraw(draw)}}</p>
                 </div>
             </div>
         </div>
 
         <div class="row info-row">
             <div class="col col-50">
-                <div class="item item-avatar">
-                    <img src="../www/img/crowd.png">
-
-                    <p>Han participado</p>
-
-                    <h2>{{draw.get("participantCount")}}</h2>
+                <div class="item item-avatar info-box">
+                    <img src="../www/img/percent.png">
+                    <h2 class="title">Han participado</h2>
+                    <p class="value">{{draw.get("participantCount")}}</p>
                 </div>
             </div>
             <div class="col col-50">
-                <div class="item item-avatar">
+                <div class="item item-avatar info-box" >
                     <img src="../www/img/euro.png">
+                    <h2 class="title">Premio entregado</h2>
+                    <p class="value" style="font-size: 12px">{{draw.get("prize")}}</p>
 
-                    <p>Premio entregado</p>
-
-                    <h2>{{draw.get("prize")}}</h2>
                 </div>
             </div>
         </div>
@@ -184,7 +177,7 @@
 
                     <p>Ganador</p>
 
-                    <h2>{{getWinner(draw)}}</h2>
+                    <h2>{{draw.get("winner").get("email")}}</h2>
 
                 </div>
             </div>

@@ -1,211 +1,201 @@
 <ion-content has-header="true" xmlns="http://www.w3.org/1999/html">
 
 
-    <ion-list>
-        <ion-item class="trinca-item">
+<ion-list>
+    <ion-item class="trinca-item">
 
-            <div class="row titulo">
-                <div class="col col-33">
-                    TRINCA#M
+        <div class="row titulo">
+            <div class="col col-33">
+                TRINCA#{{draw.get("drawNum")}}
+            </div>
+            <div class="col fecha">
+                Sorteo :{{draw.get("drawDate") | date:'yyyy-MM-dd' }}
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                Apuesta Trinca:
+            </div>
+        </div>
+        <div class="row">
+            <div class="col figura bola">
+                <div class="num-outer">
+                    <div class="num">
+                        {{draw.get("betNum1")}}
+                    </div>
                 </div>
-                <div class="col fecha">
-                    Sorteo :{{draw.get("drawDate") | date:'yyyy-MM-dd' }}
+            </div>
+            <div class="col figura bola">
+                <div class="num-outer">
+                    <div class="num">
+                        {{draw.get("betNum2")}}
+                    </div>
+                </div>
+            </div>
+            <div class="col figura bola">
+                <div class="num-outer">
+                    <div class="num">
+                        {{draw.get("betNum3")}}
+                    </div>
+                </div>
+            </div>
+            <div class="col figura bola">
+                <div class="num-outer">
+                    <div class="num">
+                        {{draw.get("betNum4")}}
+                    </div>
+                </div>
+            </div>
+            <div class="col figura bola">
+                <div class="num-outer">
+                    <div class="num">
+                        {{draw.get("betNum5")}}
+                    </div>
                 </div>
             </div>
 
-            <div class="row">
-                <div class="col">
-                    Apuesta:
+
+            <div class="col figura estrella">
+                <div class="num-outer">
+                    <div class="num">
+                        {{draw.get("betStar1")}}
+                    </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col figura bola">
-                    <div class="num-outer">
-                        <div class="num">
-                            14
-                        </div>
+            <div class="col figura estrella">
+                <div class="num-outer">
+                    <div class="num">
+                        {{draw.get("betStar2")}}
                     </div>
                 </div>
-                <div class="col figura bola">
-                    <div class="num-outer">
-                        <div class="num">
-                            14
-                        </div>
-                    </div>
-                </div>
-                <div class="col figura bola">
-                    <div class="num-outer">
-                        <div class="num">
-                            14
-                        </div>
-                    </div>
-                </div>
-                <div class="col figura bola">
-                    <div class="num-outer">
-                        <div class="num">
-                            14
-                        </div>
-                    </div>
-                </div>
-                <div class="col figura bola">
-                    <div class="num-outer">
-                        <div class="num">
-                            14
-                        </div>
-                    </div>
-                </div>
-
-
-                <div class="col figura estrella">
-                    <div class="num-outer">
-                        <div class="num">
-                            14
-                        </div>
-                    </div>
-                </div>
-                <div class="col figura estrella">
-                    <div class="num-outer">
-                        <div class="num">
-                            14
-                        </div>
-                    </div>
-                </div>
-
             </div>
 
-            <div class="row">
-                <div class="col">
-                    Resultado real:
+        </div>
+
+        <div class="row">
+            <div class="col">
+                Resultado real del sorteo:
+            </div>
+        </div>
+        <div class="row">
+            <div class="col figura bola">
+                <div class="num-outer">
+                    <div class="num">
+                        {{draw.get("realNum1")}}
+                    </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col figura bola">
-                    <div class="num-outer">
-                        <div class="num">
-                            14
-                        </div>
+            <div class="col figura bola">
+                <div class="num-outer">
+                    <div class="num">
+                        {{draw.get("realNum2")}}
                     </div>
                 </div>
-                <div class="col figura bola">
-                    <div class="num-outer">
-                        <div class="num">
-                            14
-                        </div>
+            </div>
+            <div class="col figura bola">
+                <div class="num-outer">
+                    <div class="num">
+                        {{draw.get("realNum3")}}
                     </div>
                 </div>
-                <div class="col figura bola">
-                    <div class="num-outer">
-                        <div class="num">
-                            14
-                        </div>
+            </div>
+            <div class="col figura bola">
+                <div class="num-outer">
+                    <div class="num">
+                        {{draw.get("realNum4")}}
                     </div>
                 </div>
-                <div class="col figura bola">
-                    <div class="num-outer">
-                        <div class="num">
-                            14
-                        </div>
+            </div>
+            <div class="col figura bola">
+                <div class="num-outer">
+                    <div class="num">
+                        {{draw.get("realNum5")}}
                     </div>
                 </div>
-                <div class="col figura bola">
-                    <div class="num-outer">
-                        <div class="num">
-                            14
-                        </div>
-                    </div>
-                </div>
-
-
-                <div class="col figura estrella">
-                    <div class="num-outer">
-                        <div class="num">
-                            1
-                        </div>
-                    </div>
-                </div>
-                <div class="col figura estrella">
-                    <div class="num-outer">
-                        <div class="num">
-                            2
-                        </div>
-                    </div>
-                </div>
-
             </div>
 
 
-            <div class="row">
-                <div class="col col-30">
-                    <div class="tarjeta">
-                        <h2 class="cabecera">Tienes</h2>
-                        <div class="col figura counter">
-                            <div class="num-outer">
-                                <div class="num num-big">
-                                    2
-                                </div>
-                            </div>
-                        </div>
-                        <h2 class="pie">TRINCAS</h2>
+            <div class="col figura estrella">
+                <div class="num-outer">
+                    <div class="num">
+                        {{draw.get("realStar1")}}
                     </div>
                 </div>
-                <div class="col col-10"></div>
-                <div class="col col-20">
-                    <div class="tarjeta" ng-click="viewAd(draw)">
-                        <h2 class="cabecera">Ver</h2>
-                        <img src="../www/img/anuncio1.png" width="100%"/>
-                        <h2 class="pie">Anum.</h2>
+            </div>
+            <div class="col figura estrella">
+                <div class="num-outer">
+                    <div class="num">
+                        {{draw.get("realStar2")}}
                     </div>
                 </div>
-                <div class="col col-10"></div>
-                <div class="col col-20">
-                    <div class="tarjeta">
-                        <h2 class="cabecera">Like</h2>
-                          <img src="../www/img/fb3.png" width="100%"/>
-
-                        <h2 class="pie">FB</h2>
-                    </div>
-                </div>
-                <div class="col col-10"></div>
-
             </div>
 
+        </div>
 
-            <div class="row">
-                <div class="col">
-                    <div class="tarjeta">
-                        <p class="valor usuarios">1234</p>
-                        <h2 class="pie">Usuarios</h2>
-                    </div>
+
+        <div class="row info-row">
+            <div class="col col-50">
+                <div class="item item-avatar info-box">
+                    <img src="../www/img/counter.png">
+                    <h2 class="title">tus TRINCAS</h2>
+                    <p class="value">123</p>
                 </div>
-                <div class="col">
-                    <div class="tarjeta">
-                        <p class="valor euro">1234</p>
-                        <h2 class="pie">Premio</h2>
-                    </div>
+            </div>
+            <div class="col col-50">
+                <div class="item item-avatar info-box">
+                    <img src="../www/img/percent.png">
+                    <h2 class="title">Probabilidad</h2>
+                    <p class="value">87,4</p>
+
                 </div>
-                <div class="col">
-                    <div class="tarjeta">
-                        <p class="valor winner">Aritz Galdos</p>
-                        <h2 class="pie">Ganador</h2>
-                    </div>
+            </div>
+        </div>
+
+        <div class="row info-row">
+            <div class="col col-50">
+                <div class="item item-avatar info-box">
+                    <img src="../www/img/percent.png">
+                    <h2 class="title">Han participado</h2>
+                    <p class="value">874</p>
+                </div>
+            </div>
+            <div class="col col-50">
+                <div class="item item-avatar info-box">
+                    <img src="../www/img/euro.png">
+                    <h2 class="title">Premio entregado</h2>
+                    <p class="value">134.324.567</p>
+
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row info-row">
+            <div class="col">
+                <div class="item item-avatar">
+                    <img src="../www/img/winner.png">
+                    <h2 class="title">Ganador</h2>
+                    <p class="value">Aritz Galdos</p>
                 </div>
 
             </div>
+        </div>
 
 
-        </ion-item>
-    </ion-list>
+    </ion-item>
+</ion-list>
 
-    <script id="my-popover.html" type="text/ng-template">
-        <ion-popover-view>
-            <ion-header-bar>
-                <h1 class="title">My Popover Title</h1>
-            </ion-header-bar>
-            <ion-content>
-                Hello!
-            </ion-content>
-        </ion-popover-view>
-    </script>
+<script id="my-popover.html" type="text/ng-template">
+    <ion-popover-view>
+        <ion-header-bar>
+            <h1 class="title">My Popover Title</h1>
+        </ion-header-bar>
+        <ion-content>
+            Hello!
+        </ion-content>
+    </ion-popover-view>
+</script>
 
 
 </ion-content>
