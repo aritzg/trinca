@@ -154,6 +154,7 @@ angular.module('trinca.controllers', [])
             return(SentMessageService.countUnread());
         }
 
+
     })
 
     .controller('ForgotPasswordCtrl', function ($scope, $state,
@@ -243,62 +244,23 @@ angular.module('trinca.controllers', [])
         };
     })
 
-    .controller('AdTestCtrl', function ($scope, $http, AdUtilService) {
-        var adRequestURL = AdUtilService.adRequestURL();
-        $http.get(
-            adRequestURL,
-            { headers: {
-                'Access-Control-Allow-Origin': '*'}
-            }
-        ).
-        success(function (data, status) {
-            if(status==200){
-
-               $scope.click_url=data.click_url;
-                $scope.img_url=data.imageassets.icon.url;
-
-             }
-
-        })
-
-        .error(function (data) {
-            alert("Error obteniendo anuncio");
-        });
-
-
-    })
-
     .controller('HomeCtrl', function ($scope, $state,$http, $ionicLoading, $rootScope, AdUtilService, SentMessageService, DrawService, TicketService) {
 
-
+        var clickedDraw;
+        
         $scope.sumMyTickets = function (draw) {
             return TicketService.sumMyTickets(draw);
         }
 
 
         $scope.viewAd = function (draw) {
+            window.plugins.AdMob.createInterstitialView();
+            clickedDraw=draw;
+        }
 
-            var adRequestURL = AdUtilService.adRequestURL();
-            $http.get(
-                adRequestURL,
-                { headers: {
-                    'Access-Control-Allow-Origin': '*'}
-                }
-            ).
-                success(function (data, status) {
-                    if(status==200){
-
-                        window.open(data.click_url, '_blank', 'location=yes');
-
-                        TicketService.addTicket($scope, $rootScope.user, draw);
-                    }
-                })
-
-                .error(function (data) {
-
-                    alert("Error obteniendo anuncio");
-                });
-
+        clickAd = function () {
+            TicketService.addTicket($scope, $rootScope.user, clickedDraw);
+            alert(clickedDraw.id);
         }
 
 
@@ -308,7 +270,7 @@ angular.module('trinca.controllers', [])
             TicketService.loadMyTickets($rootScope.user);
         }
         $scope.downloadAndInitValues();
-
+        document.addEventListener('onLeaveToAd', clickAd);
     })
 
     .controller('MineCtrl', function ($scope, $state,$http, $ionicLoading, $rootScope, TicketService) {
@@ -392,6 +354,8 @@ angular.module('trinca.controllers', [])
     })
     .controller('MessagesCtrl', function ($scope, SentMessageService) {
 
+        
+        
         $scope.getMessageTitle = function (sentMessage){
             return SentMessageService.getMessageTitle(sentMessage);
         }
@@ -406,27 +370,4 @@ angular.module('trinca.controllers', [])
         }
 
 
-    })
-
-
-
-
-    .directive('stellax', function ($timeout) {
-        return {
-            restrict: 'A',
-            link: function ($scope, $element, $attr) {
-
-                $timeout(function () {
-                    $('.scroll').stellar({
-                        scrollProperty: 'transform',
-                        positionProperty: 'transform',
-                        horizontalScrolling: false,
-                        verticalOffset: -150
-                    });
-                });
-
-
-
-            }
-        };
     });

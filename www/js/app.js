@@ -153,4 +153,79 @@ angular.module('starter', ['ionic', 'trinca.controllers', 'trinca.services', 'tr
 
 
 
+        ionic.Platform.ready(function(){
+           
+           onDeviceReady()
+        });
+
+        function onDeviceReady() {
+            initAd();
+
+            window.plugins.AdMob.createBannerView();
+            
+            
+            // prepare the interstitial
+            //window.plugins.AdMob.createInterstitialView({}, function(){alert('OK0');}, function(){alert('ERR0');});
+
+            // somewhere else, show the interstital, not needed if set autoShow = true
+            //window.plugins.AdMob.showInterstitialAd({}, function(){alert('OK1');}, function(){alert('ERR1');});
+        }
+
+        function initAd(){
+            
+            if ( window.plugins && window.plugins.AdMob ) {
+                var ad_units = {
+                    ios : {
+                        banner: 'xxxxx',
+                        interstitial: 'xxxxx'
+                    },
+                    android : {
+                        banner: 'ca-app-pub-1260905809309513/4572137630',
+                        interstitial: 'ca-app-pub-1260905809309513/4888365238'
+                    },
+                    wp8 : {
+                        banner: 'xxxxx',
+                        interstitial: 'xxxxx'
+                    }
+                };
+                var admobid = "";
+                if( /(android)/i.test(navigator.userAgent) ) {
+                    admobid = ad_units.android;
+                } else if(/(iphone|ipad)/i.test(navigator.userAgent)) {
+                    admobid = ad_units.ios;
+                } else {
+                    admobid = ad_units.wp8;
+                }
+
+               
+                window.plugins.AdMob.setOptions( {
+                    publisherId: admobid.banner,
+                    interstitialAdId: admobid.interstitial,
+                    bannerAtTop: false, // set to true, to put banner at top
+                    overlap: true, // set to true, to allow banner overlap webview
+                    offsetTopBar: true, // set to true to avoid ios7 status bar overlap
+                    isTesting: true, // receiving test ad
+                    autoShow: true // auto show interstitial ad when loaded
+                });
+
+                registerAdEvents();
+
+            } else {
+                //alert( 'admob plugin not ready' );
+            }
+        }
+
+        function registerAdEvents() {
+            document.addEventListener('onReceiveAd', function(){window.plugins.AdMob.showAd();});
+            document.addEventListener('onFailedToReceiveAd', function(data){});
+            document.addEventListener('onPresentAd', function(){});
+            document.addEventListener('onDismissAd', function(){});
+            document.addEventListener('onLeaveToAd', function(){});
+            document.addEventListener('onReceiveInterstitialAd', function(){});
+            document.addEventListener('onPresentInterstitialAd', function(){});
+            document.addEventListener('onDismissInterstitialAd', function(){alert('Dismiss!');});
+        }
+
+
+
     });

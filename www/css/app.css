@@ -231,7 +231,15 @@ section.parallax .pixel {
     border-radius: 15px;
     background: blue;
 }
-/**/
+
+
+
+/*MENU*/
+#intro-footer.bar-footer,
+ion-side-menu .bar-footer {
+    margin-bottom: 48px;
+}
+
 
 
 

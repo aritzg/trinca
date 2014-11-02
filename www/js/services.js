@@ -3,15 +3,15 @@ angular.module('trinca.services', [])
 
 .factory('AdUtilService', function() {
 
-        var publisherID = '80187188f458cfde788d961b6882fd53';//TESTING
-        //var publisherID = '576cb3fbb172f6686420dd47278cf4b6';//REAL
+        //var publisherID = '80187188f458cfde788d961b6882fd53';//TESTING
+        var publisherID = '576cb3fbb172f6686420dd47278cf4b6';//REAL
   return {
 
 
 
 
     adRequestURL: function (){
-       return 'http://my.mobfox.com/request.php?rt=api&r_type=native&r_resp=json&s=' + publisherID+ '&n_img=icon&n_txt=headline&u=' + navigator.userAgent + '&i='+ device_ip + '&o_andadvid=12342134234ewarfaw&v=3.0';
+       return 'http://my.mobfox.com/request.php?rt=api&r_type=native&r_resp=json&s=' + publisherID+ '&n_img=icon&n_txt=headline&u=' + navigator.userAgent + '&i='+ device_ip + '&v=3.0';
     }/*,
     userAgent: function() {
       return navigator.userAgent;

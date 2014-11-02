@@ -77,42 +77,53 @@ Parse.Cloud.afterSave("Draw", function (request) {
     }
     else if(request.object.get('state')=='closed' && request.object.get('type')=='bet'){
 
-        query = new Parse.Query("User");
+        query = new Parse.Query("Ticket");
+        query.equalTo('drawId', request.object);
         query.find({
             success: function (results) {
-                winner = _.shuffle(results)[0];
-                console.log("And the winner is " + winner.get('email'));
+                winnerTicket = _.shuffle(results)[0];
+                winner = winnerTicket.get('user');
 
-                var Message = Parse.Object.extend("Message");
-                var message = new Message();
-                message.set('title','Finalizado Trinca#' + request.object.get('drawNum'));
-                message.set('text', 'Se ha finalizado elTrinca#' + request.object.get('drawNum') + '. El ganador se lleva un boleto premiado con ' + request.object.get('prize') + ' Euros.');
-                message.set('type','broadcast');
-                message.set('state','new');
-                message.save({success: function () {
-                }});
+                winner.fetch({
+                  success: function(winner) {
+                    console.log("And the winner is " + winner.get('email'));
 
-
-                message = new Message();
-                message.set('title','Felicifades! Ganador de Trinca#' + request.object.get('drawNum'));
-                message.set('text', 'Has ganado elTrinca#' + request.object.get('drawNum') + '. Nos pondremos en contacto para entregarte el boleto premiado con ' + request.object.get('prize') + ' Euros.');
-                message.set('type','prize');
-                message.set('state','new');
-                message.save({success: function () {
-                    var SentMessage = Parse.Object.extend("SentMessage");
-                    var sentMessage = new SentMessage();
-                    sentMessage.set('toUser', winner);
-                    sentMessage.set('message', message);
-                    sentMessage.save({success: function () {
+                    var Message = Parse.Object.extend("Message");
+                    var message = new Message();
+                    message.set('title','Finalizado Trinca#' + request.object.get('drawNum'));
+                    message.set('text', 'Se ha finalizado elTrinca#' + request.object.get('drawNum') + '. El ganador se lleva un boleto premiado con ' + request.object.get('prize') + ' Euros.');
+                    message.set('type','broadcast');
+                    message.set('state','new');
+                    message.save({success: function () {
                     }});
-                }});
 
-                request.object.set('closedDate', new Date());
-                request.object.set('state', 'finished');
-                request.object.set('winner', winner);
+                    message = new Message();
+                    message.set('title','Felicifades! Ganador de Trinca#' + request.object.get('drawNum'));
+                    message.set('text', 'Has ganado elTrinca#' + request.object.get('drawNum') + '. Nos pondremos en contacto para entregarte el boleto premiado con ' + request.object.get('prize') + ' Euros.');
+                    message.set('type','prize');
+                    message.set('state','new');
+                    message.save({success: function () {
+                        var SentMessage = Parse.Object.extend("SentMessage");
+                        var sentMessage = new SentMessage();
+                        sentMessage.set('toUser', winner);
+                        sentMessage.set('message', message);
+                        sentMessage.save({success: function () {
+                        }});
+                    }});
 
-                request.object.save({success: function () {
-                }});
+                    request.object.set('closedDate', new Date());
+                    request.object.set('state', 'finished');
+                    request.object.set('winner', winner);
+
+                    request.object.save({success: function () {
+                    }});
+                  },
+                  error: function(myObject, error) {
+                    
+                  }
+                });
+
+                
 
 
             },
