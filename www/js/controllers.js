@@ -246,23 +246,57 @@ angular.module('trinca.controllers', [])
 
     .controller('HomeCtrl', function ($scope, $state,$http, $ionicLoading, $rootScope, AdUtilService, SentMessageService, DrawService, TicketService) {
 
-        var clickedDraw;
+        /*METHOD TWO*/
+        $scope.adButtonClass = function () {
+            if($rootScope.adViewed){
+                return '';
+            }
+            else{
+                return 'button-outline';
+            }
+        } 
+
+        $rootScope.ikusia = function () {
+            $rootScope.adViewed=true;$scope.$apply();
+        }
         
+        $scope.trinca = function (draw) {
+            if($rootScope.adViewed){
+                $rootScope.adViewed=false;
+                TicketService.addTicket($scope, $rootScope.user, draw);
+                $scope.$apply();
+            }
+            else{
+                alert('No has activado esta opción! ;)');
+            }
+        }  
+        /*METHOD TWO END*/
+
+        /*SHARE ON FB*/
+
+        $scope.shareFB = function () {
+            alert('ss');
+           /* FB.ui({
+            method: 'feed',
+            name: 'Trinca!',
+            link: 'https://play.google.com/store/apps/details?id=net.sareweb.trinca',
+            picture: 'https://lh5.ggpht.com/zLAk5tn2ju6F0QbTWXu1dlidEPjPFhDHdXTaWnGX4AdiMMv7bY3wLT_YQNJsu0gPThA=w300-rw',
+            caption: 'Trinca',
+            description: 'Trinca. The game!'
+          }, function(response){alert('zz');});*/
+            //facebookConnectPlugin.api("/feed?message=aaaaa", ["publish_actions"], function(){alert('ok');}, function(){alert('err');});
+
+           facebookConnectPlugin.api( "me/feed?message=testtttttt", ["publish_actions"],
+                function (response) { alert("aa " + JSON.stringify(response)) },
+                function (response) { alert("bb " + JSON.stringify(response)) });  
+        alert('vv');
+
+        }
+
+
         $scope.sumMyTickets = function (draw) {
             return TicketService.sumMyTickets(draw);
-        }
-
-
-        $scope.viewAd = function (draw) {
-            window.plugins.AdMob.createInterstitialView();
-            clickedDraw=draw;
-        }
-
-        clickAd = function () {
-            TicketService.addTicket($scope, $rootScope.user, clickedDraw);
-            alert(clickedDraw.id);
-        }
-
+        }      
 
         $scope.downloadAndInitValues = function(){
             SentMessageService.loadSentMessages($rootScope.user);
@@ -270,7 +304,8 @@ angular.module('trinca.controllers', [])
             TicketService.loadMyTickets($rootScope.user);
         }
         $scope.downloadAndInitValues();
-        document.addEventListener('onLeaveToAd', clickAd);
+
+        //document.addEventListener('onLeaveToAd', clickAd);
     })
 
     .controller('MineCtrl', function ($scope, $state,$http, $ionicLoading, $rootScope, TicketService) {

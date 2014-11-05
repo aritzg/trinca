@@ -164,11 +164,8 @@
 }
 
 .info-box .title{
-
     width: 100%;
     text-align: center;
-
-
 }
 
 .info-box .value{
@@ -230,14 +227,6 @@ section.parallax .pixel {
     height: 15px;
     border-radius: 15px;
     background: blue;
-}
-
-
-
-/*MENU*/
-#intro-footer.bar-footer,
-ion-side-menu .bar-footer {
-    margin-bottom: 48px;
 }
 
 

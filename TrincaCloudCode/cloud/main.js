@@ -91,7 +91,7 @@ Parse.Cloud.afterSave("Draw", function (request) {
                     var Message = Parse.Object.extend("Message");
                     var message = new Message();
                     message.set('title','Finalizado Trinca#' + request.object.get('drawNum'));
-                    message.set('text', 'Se ha finalizado elTrinca#' + request.object.get('drawNum') + '. El ganador se lleva un boleto premiado con ' + request.object.get('prize') + ' Euros.');
+                    message.set('text', 'Se ha finalizado el Trinca#' + request.object.get('drawNum') + '. El ganador se lleva un boleto premiado con ' + request.object.get('prize') + ' Euros.');
                     message.set('type','broadcast');
                     message.set('state','new');
                     message.save({success: function () {

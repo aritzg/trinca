@@ -172,6 +172,8 @@ angular.module('starter', ['ionic', 'trinca.controllers', 'trinca.services', 'tr
         }
 
         function initAd(){
+            //Iragarkia ikusia izan den jakiteko flag-a
+            $rootScope.adViewed=false;
             
             if ( window.plugins && window.plugins.AdMob ) {
                 var ad_units = {
@@ -202,7 +204,7 @@ angular.module('starter', ['ionic', 'trinca.controllers', 'trinca.services', 'tr
                     publisherId: admobid.banner,
                     interstitialAdId: admobid.interstitial,
                     bannerAtTop: false, // set to true, to put banner at top
-                    overlap: true, // set to true, to allow banner overlap webview
+                    overlap: false, // set to true, to allow banner overlap webview
                     offsetTopBar: true, // set to true to avoid ios7 status bar overlap
                     isTesting: true, // receiving test ad
                     autoShow: true // auto show interstitial ad when loaded
@@ -216,14 +218,14 @@ angular.module('starter', ['ionic', 'trinca.controllers', 'trinca.services', 'tr
         }
 
         function registerAdEvents() {
-            document.addEventListener('onReceiveAd', function(){window.plugins.AdMob.showAd();});
-            document.addEventListener('onFailedToReceiveAd', function(data){});
-            document.addEventListener('onPresentAd', function(){});
-            document.addEventListener('onDismissAd', function(){});
-            document.addEventListener('onLeaveToAd', function(){});
-            document.addEventListener('onReceiveInterstitialAd', function(){});
-            document.addEventListener('onPresentInterstitialAd', function(){});
-            document.addEventListener('onDismissInterstitialAd', function(){alert('Dismiss!');});
+            //document.addEventListener('onReceiveAd', function(){/*window.plugins.AdMob.showAd();*/});
+            //document.addEventListener('onFailedToReceiveAd', function(data){});
+            //document.addEventListener('onPresentAd', function(){});
+            //document.addEventListener('onDismissAd', function(){});
+            document.addEventListener('onLeaveToAd', function(){$rootScope.ikusia();});
+            //document.addEventListener('onReceiveInterstitialAd', function(){});
+            //document.addEventListener('onPresentInterstitialAd', function(){});
+            //document.addEventListener('onDismissInterstitialAd', function(){});
         }
 
 
