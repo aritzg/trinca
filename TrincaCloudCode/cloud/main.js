@@ -64,11 +64,19 @@ Parse.Cloud.afterSave("Draw", function (request) {
         var Message = Parse.Object.extend("Message");
         var message = new Message();
         message.set('title','Creado Trinca#' + request.object.get('drawNum'));
-        message.set('text', 'Participa y gana GRATIS el boleto ' + request.object.get('betNum1') + ', '+ request.object.get('betNum2') + ', '+ request.object.get('betNum3') + ', '+ request.object.get('betNum4') + ', '+ request.object.get('betNum5') + ' y estrellas ' + request.object.get('betStar1') + ', '+ request.object.get('betStar2'));
+        var messageText = 'Participa y gana GRATIS el boleto ' + request.object.get('betNum1') + ', '+ request.object.get('betNum2') + ', '+ request.object.get('betNum3') + ', '+ request.object.get('betNum4') + ', '+ request.object.get('betNum5') + ' y estrellas ' + request.object.get('betStar1') + ', '+ request.object.get('betStar2');
+        message.set('text', messageText);
         message.set('type','broadcast');
         message.set('state','new');
         message.save({success: function () {
         }});
+
+        Parse.Push.send({
+          channels: [ "" ],
+          data: {
+            alert: messageText
+          }
+        });
 
         request.object.set('state', 'ongoing');
         request.object.save({success: function () {
