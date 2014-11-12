@@ -35,6 +35,21 @@ Parse.Cloud.afterSave("Message", function (request) {
     }
 });
 
+Parse.Cloud.afterDelete("Message", function (request) {
+    query = new Parse.Query("SentMessage");
+    query.equalTo('message', request.object);
+    query.find({
+        success: function (results) {
+            Parse.Object.destroyAll(results);
+        },
+        error: function (error) {
+
+        }
+    });
+
+});
+
+
 Parse.Cloud.afterSave("_User", function (request) {
 
     if (!request.object.existed()) {
