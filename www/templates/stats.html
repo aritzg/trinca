@@ -1,110 +1,102 @@
-<ion-content has-header="true">
+    <ion-content has-header="true">
 
-    <ion-item class="trinca-item">
-    <div class="row titulo">
-        Más repetidos
-    </div>
+        <ion-item class="trinca-item">
+        <div class="row titulo">
+            Más repetidos
+        </div>
 
 
-    <div class="row trinca-item">
-        <div class="col figura bola">
-            <div class="num-outer">
-                <div class="num">
-                    {{mostFreq.get("betNum1")}}
+        <div class="row trinca-item">
+            <div class="col figura bola">
+                <div class="num-outer">
+                    <div class="num">
+                        {{mostFreq.get("betNum1")}}
+                    </div>
+                </div>
+            </div>
+            <div class="col figura bola">
+                <div class="num-outer">
+                    <div class="num">
+                        {{mostFreq.get("betNum2")}}
+                    </div>
+                </div>
+            </div>
+            <div class="col figura bola">
+                <div class="num-outer">
+                    <div class="num">
+                        {{mostFreq.get("betNum3")}}
+                    </div>
+                </div>
+            </div>
+            <div class="col figura bola">
+                <div class="num-outer">
+                    <div class="num">
+                        {{mostFreq.get("betNum4")}}
+                    </div>
+                </div>
+            </div>
+            <div class="col figura bola">
+                <div class="num-outer">
+                    <div class="num">
+                        {{mostFreq.get("betNum5")}}
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col figura estrella">
+                <div class="num-outer">
+                    <div class="num">
+                        {{mostFreq.get("betStar1")}}
+                    </div>
+                </div>
+            </div>
+            <div class="col figura estrella">
+                <div class="num-outer">
+                    <div class="num">
+                        {{mostFreq.get("betStar2")}}
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        </ion-item>
+
+
+        <div class="row info-row">
+            <div class="col col-50">
+                <div class="item item-avatar info-box" >
+                    <img src="../www/img/crowd.png">
+                    <h2 class="title">Usuarios</h2>
+                    <p class="value" style="font-size: 25px">{{userCount}}</p>
+                </div>
+            </div>
+            <div class="col col-50">
+                <div class="item item-avatar info-box" >
+                    <img src="../www/img/icon.png">
+                    <h2 class="title">Trincas activos</h2>
+                    <p class="value" style="font-size: 25px">{{activeDraws}}</p>
                 </div>
             </div>
         </div>
-        <div class="col figura bola">
-            <div class="num-outer">
-                <div class="num">
-                    {{mostFreq.get("betNum2")}}
+
+        <div class="row info-row">
+            <div class="col col-50">
+                <div class="item item-avatar info-box" >
+                    <img src="../www/img/counter.png">
+                    <h2 class="title">Trincas jugados</h2>
+                    <p class="value" style="font-size: 25px">{{playedDraws}}</p>
                 </div>
             </div>
-        </div>
-        <div class="col figura bola">
-            <div class="num-outer">
-                <div class="num">
-                    {{mostFreq.get("betNum3")}}
-                </div>
-            </div>
-        </div>
-        <div class="col figura bola">
-            <div class="num-outer">
-                <div class="num">
-                    {{mostFreq.get("betNum4")}}
-                </div>
-            </div>
-        </div>
-        <div class="col figura bola">
-            <div class="num-outer">
-                <div class="num">
-                    {{mostFreq.get("betNum5")}}
+            <div class="col col-50">
+                <div class="item item-avatar info-box" >
+                    <img src="../www/img/euro.png">
+                    <h2 class="title">Trinca ha repartido</h2>
+                    <p class="value" style="font-size: 25px">{{totalPrize}}</p>
                 </div>
             </div>
         </div>
 
 
-        <div class="col figura estrella">
-            <div class="num-outer">
-                <div class="num">
-                    {{mostFreq.get("betStar1")}}
-                </div>
-            </div>
-        </div>
-        <div class="col figura estrella">
-            <div class="num-outer">
-                <div class="num">
-                    {{mostFreq.get("betStar2")}}
-                </div>
-            </div>
-        </div>
-
-    </div>
-    </ion-item>
-
-
-    <div class="row info-row">
-        <div class="col col-50">
-            <div class="item item-avatar">
-                <img src="../www/img/crowd.png">
-
-                <p>Usuarios</p>
-
-                <h2>{{userCount}}</h2>
-            </div>
-        </div>
-        <div class="col col-50">
-            <div class="item item-avatar">
-                <img src="../www/img/percent.png">
-
-                <p>Trincas jugados</p>
-
-                <h2>{{playedDraws}}</h2>
-            </div>
-        </div>
-    </div>
-
-    <div class="row info-row">
-        <div class="col col-50">
-            <div class="item item-avatar">
-                <img src="../www/img/crowd.png">
-
-                <p>Trincas activos</p>
-
-                <h2>{{activeDraws}}</h2>
-            </div>
-        </div>
-        <div class="col col-50">
-            <div class="item item-avatar">
-                <img src="../www/img/percent.png">
-
-                <p>Trinca ha repartido</p>
-
-                <h2> {{totalPrize}}€</h2>
-            </div>
-        </div>
-    </div>
-
-
-</ion-content>
+    </ion-content>
 
