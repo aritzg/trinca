@@ -7,6 +7,10 @@
   height: 96px;
 }
 
+ion-nav-view {
+    background-color: #fff;
+}
+
 @font-face {
     font-family: piron;
     src: url("../font/piron.otf") format("opentype");
