@@ -121,8 +121,10 @@ Parse.Cloud.afterSave("Draw", function (request) {
                     }});
 
                     message = new Message();
-                    message.set('title','Felicifades! Ganador de Trinca#' + request.object.get('drawNum'));
-                    message.set('text', 'Has ganado elTrinca#' + request.object.get('drawNum') + '. Nos pondremos en contacto para entregarte el boleto premiado con ' + request.object.get('prize') + ' Euros.');
+                    var title = 'Felicifades! Ganador de Trinca#' + request.object.get('drawNum');
+                    message.set('title', title);
+                    var msgToWinner = 'Has ganado elTrinca#' + request.object.get('drawNum') + '. Nos pondremos en contacto para entregarte el boleto premiado con ' + request.object.get('prize') + ' Euros.';
+                    message.set('text', msgToWinner);
                     message.set('type','prize');
                     message.set('state','new');
                     message.save({success: function () {
@@ -133,6 +135,16 @@ Parse.Cloud.afterSave("Draw", function (request) {
                         sentMessage.save({success: function () {
                         }});
                     }});
+
+                    var pushQuery = new Parse.Query(Parse.Installation);
+                    pushQuery.matchesQuery('user', winner);
+                    Parse.Push.send({
+                      where: pushQuery,
+                      data: {
+                        alert: msgToWinner,
+                        title: title
+                      }
+                    });
 
                     request.object.set('closedDate', new Date());
                     request.object.set('state', 'finished');
