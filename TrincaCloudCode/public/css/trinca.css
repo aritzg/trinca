@@ -3,6 +3,14 @@
 	width: 20px;
 }
 
+.logo-img{
+ background: url(../img/icon.png) no-repeat;
+height: 200px;
+
+    background-position: center;
+
+}
+
 
 footer {
     width: 100%;
