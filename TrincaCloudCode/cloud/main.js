@@ -49,9 +49,14 @@ Parse.Cloud.afterDelete("Message", function (request) {
 
 });
 
+Parse.Cloud.afterSave("SentMessage", function (request) {
+    console.log("Got installationId " + request.installationId);
+    console.log("Got master " + request.master);
+    console.log("Got user " + request.user.get("username"));
+});
 
 Parse.Cloud.afterSave("_User", function (request) {
-
+    
     if (!request.object.existed()) {
 
         query = new Parse.Query('Message');
@@ -135,9 +140,9 @@ Parse.Cloud.afterSave("Draw", function (request) {
                         sentMessage.save({success: function () {
                         }});
                     }});
-
+                    
                     var pushQuery = new Parse.Query(Parse.Installation);
-                    pushQuery.matchesQuery('user', winner);
+                    pushQuery.equalTo('user', winner);
                     Parse.Push.send({
                       where: pushQuery,
                       data: {
@@ -158,23 +163,18 @@ Parse.Cloud.afterSave("Draw", function (request) {
                   }
                 });
 
-                
-
-
             },
             error: function (error) {
                 console.error("Got an error " + error.code + " : " + error.message);
             }
         });
 
-
-
     }
 
 });
 
 Parse.Cloud.afterSave("Ticket", function (request) {
-
+    console.log("Got installationId " + request.installationId);
     query = new Parse.Query('Draw');
     query.get(request.object.get('drawId').id, {
         success: function(draw) {
