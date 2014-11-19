@@ -173,7 +173,7 @@ angular.module('starter', ['ionic', 'trinca.controllers', 'trinca.services', 'tr
 
         function initAd(){
             //Iragarkia ikusia izan den jakiteko flag-a
-            $rootScope.adViewed=false;
+            $rootScope.iragarkiBotea=0;
             
             if ( window.plugins && window.plugins.AdMob ) {
                 var ad_units = {

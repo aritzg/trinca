@@ -245,10 +245,10 @@ angular.module('trinca.controllers', [])
     })
 
     .controller('HomeCtrl', function ($scope, $state,$http, $ionicLoading, $rootScope, AdUtilService, SentMessageService, DrawService, TicketService) {
-
+       // alert($rootScope.iragarkiBotea in window);
         /*METHOD TWO*/
         $scope.adButtonClass = function () {
-            if($rootScope.adViewed){
+            if($rootScope.iragarkiBotea>0){
                 return '';
             }
             else{
@@ -257,12 +257,13 @@ angular.module('trinca.controllers', [])
         } 
 
         $rootScope.ikusia = function () {
-            $rootScope.adViewed=true;$scope.$apply();
+            $rootScope.iragarkiBotea+=1;
+            $scope.$apply();
         }
         
         $scope.trinca = function (draw) {
-            if($rootScope.adViewed){
-                $rootScope.adViewed=false;
+            if($rootScope.iragarkiBotea>0){
+                $rootScope.iragarkiBotea-=1;
                 TicketService.addTicket($scope, $rootScope.user, draw);
                 $scope.$apply();
             }
