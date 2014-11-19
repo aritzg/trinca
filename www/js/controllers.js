@@ -245,7 +245,6 @@ angular.module('trinca.controllers', [])
     })
 
     .controller('HomeCtrl', function ($scope, $state,$http, $ionicLoading, $rootScope, AdUtilService, SentMessageService, DrawService, TicketService) {
-       // alert($rootScope.iragarkiBotea in window);
         /*METHOD TWO*/
         $scope.adButtonClass = function () {
             if($rootScope.iragarkiBotea>0){

@@ -11,6 +11,15 @@ height: 200px;
 
 }
 
+.fact{
+    padding-top: 20px;
+}
+
+.fact-image{
+    width: 40%;
+    margin-bottom: 30px;
+}
+
 
 footer {
     width: 100%;
