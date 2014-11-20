@@ -3,6 +3,23 @@
 	width: 20px;
 }
 
+.logo-img{
+ background: url(../img/icon.png) no-repeat;
+height: 200px;
+
+    background-position: center;
+
+}
+
+.fact{
+    padding-top: 20px;
+}
+
+.fact-image{
+    width: 40%;
+    margin-bottom: 30px;
+}
+
 
 footer {
     width: 100%;
