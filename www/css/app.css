@@ -203,7 +203,7 @@ ion-nav-view {
     margin: 0px;
 }
 
-.message .read button{
+.message .read button.leido{
     display: none;
 }
 

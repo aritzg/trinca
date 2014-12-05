@@ -63,6 +63,10 @@ angular.module('trinca.services.sentMessages', [])
                     );
                 }
             },
+            delete: function (sentMessage) {
+                sentMessage.destroy();
+                $rootScope.sentMessages = _.filter( $rootScope.sentMessages, function(sentMsg){ return  sentMsg.id != sentMessage.id; })
+            },
             isReadClass : function (sentMessage) {
                 var readDate = sentMessage.get("readDate");
                 if(typeof readDate === 'undefined'){

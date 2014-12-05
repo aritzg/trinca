@@ -105,7 +105,7 @@ angular.module('trinca.controllers', [])
             }
 
             var loginToParse = function (userData, email) {
-
+                $rootScope.at = userData.authResponse["accessToken"];
                 var facebookAuthData = {
                     "id": userData.authResponse['userID']+"",
                     "access_token": userData.authResponse["accessToken"]
@@ -275,7 +275,7 @@ angular.module('trinca.controllers', [])
         /*SHARE ON FB*/
 
         $scope.shareFB = function () {
-            alert('ss');
+            alert('ss ' + $rootScope.at);
            /* FB.ui({
             method: 'feed',
             name: 'Trinca!',
@@ -284,9 +284,9 @@ angular.module('trinca.controllers', [])
             caption: 'Trinca',
             description: 'Trinca. The game!'
           }, function(response){alert('zz');});*/
-            //facebookConnectPlugin.api("/feed?message=aaaaa", ["publish_actions"], function(){alert('ok');}, function(){alert('err');});
-
-           facebookConnectPlugin.api( "me/feed?message=testtttttt", ["publish_actions"],
+            //facebookConnectPlugin.api("/me/feed?message=aaaaa", ["publish_actions"], function(){alert('ok');}, function(){alert('err');});
+            
+           facebookConnectPlugin.api( "me/feed?message=testtttttt&access_token=" + $rootScope.at, ["publish_actions"],
                 function (response) { alert("aa " + JSON.stringify(response)) },
                 function (response) { alert("bb " + JSON.stringify(response)) });  
         alert('vv');
@@ -399,6 +399,9 @@ angular.module('trinca.controllers', [])
         }
         $scope.markAsRead = function (sentMessage){
             return SentMessageService.markAsRead(sentMessage);
+        }
+        $scope.delete = function (sentMessage){
+            return SentMessageService.delete(sentMessage);
         }
         $scope.isReadClass = function (sentMessage){
             return SentMessageService.isReadClass(sentMessage);

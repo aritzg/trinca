@@ -1,27 +1,27 @@
 <ion-content has-header="true" xmlns="http://www.w3.org/1999/html">
-    
-
     <ion-list>
         <ion-item ng-repeat="sentMessage in sentMessages" class="message">
             <div class="{{isReadClass(sentMessage)}}"/>
-            <h1>
-                {{getMessageTitle(sentMessage)}}
-            </h1>
-            <p>
-                {{getMessageBody(sentMessage)}}
+                <h1>
+                    {{getMessageTitle(sentMessage)}}
+                </h1>
+                <p>
+                    {{getMessageBody(sentMessage)}}
 
-            </p>
-            <div class="row">
-                <div class="col-offset-67"></div>
-                <div class="col-33">
-            <button class="button button-block button-small button-outline button-dark" ng-click="markAsRead(sentMessage)">
-                Leido
-            </button>
+                </p>
+                <div class="row">
+                    <div class="col-50">
+                        <button class="button button-block button-small button-dark leido" ng-click="markAsRead(sentMessage)">
+                            Leído
+                        </button>
+                    </div>
+                    <div class="col-50">                        
+                        <button class="button button-block button-small button-assertive" ng-click="delete(sentMessage)">
+                            Borrar
+                        </button>
+                    </div>
+                </div>
             </div>
-            </div>
-            </div>
-
-
         </ion-item>
     </ion-list>
 
