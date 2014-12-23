@@ -33,7 +33,7 @@ angular.module('trinca.services.installation', [])
             },
             bindUser: function (user) {
                 if(typeof installation === 'undefined'){
-                    alert('this is not an installation!');
+                    //alert('this is not an installation!');
                 }
                 else{
                     installation.bindUser(

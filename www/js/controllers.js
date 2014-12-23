@@ -3,7 +3,7 @@ angular.module('trinca.controllers', [])
 
     .controller('MainCtrl', function ($state, $scope, $rootScope, $ionicLoading, $ionicSideMenuDelegate,$ionicNavBarDelegate , SentMessageService, DrawService, TicketService) {
 
-        $ionicNavBarDelegate.showBar(false);
+        //$ionicNavBarDelegate.showBar(false);
 
         $scope.leftButtons = [
             {
