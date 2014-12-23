@@ -1,7 +1,9 @@
 angular.module('trinca.controllers', [])
 
 
-    .controller('MainCtrl', function ($state, $scope, $rootScope, $ionicLoading, $ionicSideMenuDelegate, SentMessageService, DrawService, TicketService) {
+    .controller('MainCtrl', function ($state, $scope, $rootScope, $ionicLoading, $ionicSideMenuDelegate,$ionicNavBarDelegate , SentMessageService, DrawService, TicketService) {
+
+        $ionicNavBarDelegate.showBar(false);
 
         $scope.leftButtons = [
             {
@@ -25,8 +27,6 @@ angular.module('trinca.controllers', [])
                 }
             }
         ];
-
-
 
         $scope.login = {
             username: '',
@@ -244,7 +244,10 @@ angular.module('trinca.controllers', [])
         };
     })
 
-    .controller('HomeCtrl', function ($scope, $state,$http, $ionicLoading, $rootScope, AdUtilService, SentMessageService, DrawService, TicketService) {
+    .controller('HomeCtrl', function ($scope, $state,$http, $ionicLoading, $rootScope, AdUtilService, SentMessageService, DrawService, TicketService, InstallationService) {
+        
+        InstallationService.bindUser($rootScope.user);
+
         /*METHOD TWO*/
         $scope.adButtonClass = function () {
             if($rootScope.iragarkiBotea>0){
