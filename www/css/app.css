@@ -170,6 +170,7 @@ ion-nav-view {
 
 .info-box > img:first-child{
     top: 24px;
+    border-radius: 0;
 }
 
 .info-box .title{

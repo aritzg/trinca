@@ -105,7 +105,6 @@ angular.module('trinca.controllers', [])
             }
 
             var loginToParse = function (userData, email) {
-                $rootScope.at = userData.authResponse["accessToken"];
                 var facebookAuthData = {
                     "id": userData.authResponse['userID']+"",
                     "access_token": userData.authResponse["accessToken"]
@@ -277,22 +276,29 @@ angular.module('trinca.controllers', [])
 
         /*SHARE ON FB*/
 
-        $scope.shareFB = function () {
-            alert('ss ' + $rootScope.at);
-           /* FB.ui({
-            method: 'feed',
-            name: 'Trinca!',
-            link: 'https://play.google.com/store/apps/details?id=net.sareweb.trinca',
-            picture: 'https://lh5.ggpht.com/zLAk5tn2ju6F0QbTWXu1dlidEPjPFhDHdXTaWnGX4AdiMMv7bY3wLT_YQNJsu0gPThA=w300-rw',
-            caption: 'Trinca',
-            description: 'Trinca. The game!'
-          }, function(response){alert('zz');});*/
-            //facebookConnectPlugin.api("/me/feed?message=aaaaa", ["publish_actions"], function(){alert('ok');}, function(){alert('err');});
-            
-           facebookConnectPlugin.api( "me/feed?message=testtttttt&access_token=" + $rootScope.at, ["publish_actions"],
-                function (response) { alert("aa " + JSON.stringify(response)) },
-                function (response) { alert("bb " + JSON.stringify(response)) });  
-        alert('vv');
+        $scope.shareFB = function (draw) {
+
+            var dialogOpts = {
+                method: "feed",
+                link: "https://play.google.com/store/apps/details?id=net.sareweb.trinca",
+                caption: "Boletos de Euromillones Gratis con Trinca!",
+                description: "He jugado gratis en Trinca para los números " 
+                                + draw.get("betNum1") + ","
+                                + draw.get("betNum2") + ","
+                                + draw.get("betNum3") + ","
+                                + draw.get("betNum4") + ","
+                                + draw.get("betNum5") + " y estrellas "
+                                + draw.get("betStar1") + "," + draw.get("betStar2")
+            }
+        
+            facebookConnectPlugin.showDialog(
+                dialogOpts, 
+                function(){
+                   TicketService.addTicket($scope, $rootScope.user, draw, 3);
+                }, 
+                function(){alert('No se ha compartido en Facebook :(');}
+            );
+
 
         }
 

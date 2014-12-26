@@ -14,9 +14,6 @@
         $ionicPlatform.ready(function(){
             onDeviceReady();
 
-
-
-
             var APP_ID = 'OlBVD14oguSdo4Q5DSHPXGQ3SNT599AV9vPGfidO';
             var JS_KEY = 'JtAliBkwz4c57Tg2j8FowBItbYfZUVAJ7kO179I2';
             var FB_APP_ID = '783512515021469';
@@ -48,40 +45,12 @@
                 fjs.parentNode.insertBefore(js, fjs);
             }(document, 'script', 'facebook-jssdk'));
 
-
-
             
         });
 
         function onDeviceReady() {
             initAd();
 
-           
-            /*$rootScope.installation=window.installation;
-            installation.getInstallationId(
-                function(successParam) {
-                    var installationQuery = new Parse.Query(Parse.Installation);
-                    alert(successParam.installationId);
-                    $rootScope.installationId=successParam.installationId;
-                    installationQuery.equalTo('installationId', successParam.installationId);
-                    installationQuery.find({
-                        success: function (results) {
-                            installation = results[0];
-                            installation.set('user', currentUser);
-                            message.save({success: function () {alert('yep')}});
-                        }
-                    });
-                }
-            );*/
-
-            /*try{
-                if(typeof $rootScope.installationId === 'undefined'){
-                    installation.getInstallationId(function(successParam) {$rootScope.installationId=successParam.installationId; alert('1' + $rootScope.installationId)});
-                }   
-            }
-            catch(err) {
-                alert(err.message);
-            }*/
         }
 
         function initAd(){
