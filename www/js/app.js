@@ -23,6 +23,9 @@
             var currentUser = Parse.User.current();
             if (currentUser) {
                 $rootScope.user = currentUser;
+                $rootScope.user.fetch().then( function(user){
+                    if(!user.get("trincaCounter"))$rootScope.user.set("trincaCounter", 0);
+                });
                 $state.go('menu.home', {clear: true});
             }else{
                 $state.go('intro', {clear: true});
@@ -88,7 +91,7 @@
                     bannerAtTop: true, // set to true, to put banner at top
                     overlap: false, // set to true, to allow banner overlap webview
                     offsetTopBar: true, // set to true to avoid ios7 status bar overlap
-                    isTesting: false, // receiving test ad
+                    isTesting: true, // receiving test ad
                     autoShow: true // auto show interstitial ad when loaded
                 });
 

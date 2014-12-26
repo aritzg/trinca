@@ -243,13 +243,13 @@ angular.module('trinca.controllers', [])
         };
     })
 
-    .controller('HomeCtrl', function ($scope, $state,$http, $ionicLoading, $rootScope, AdUtilService, SentMessageService, DrawService, TicketService, InstallationService) {
+    .controller('HomeCtrl', function ($scope, $state,$http, $ionicLoading,$ionicPopup, $rootScope, AdUtilService, SentMessageService, DrawService, TicketService, InstallationService) {
         
         InstallationService.bindUser($rootScope.user);
 
         /*METHOD TWO*/
         $scope.adButtonClass = function () {
-            if($rootScope.iragarkiBotea>0){
+            if($rootScope.user.get("trincaCounter")>0){
                 return '';
             }
             else{
@@ -258,15 +258,21 @@ angular.module('trinca.controllers', [])
         } 
 
         $rootScope.ikusia = function () {
-            $rootScope.iragarkiBotea+=1;
+            var trincaCounter = $rootScope.user.get("trincaCounter");
+            $rootScope.user.set("trincaCounter", $rootScope.user.get("trincaCounter")+1);
+            $rootScope.user.save();
             $scope.$apply();
+            var alertPopup = $ionicPopup.alert({
+                title: 'Enhorabuena!',
+                templateUrl: ' templates/alert/viewAd.html'
+            });
         }
         
         $scope.trinca = function (draw) {
-            if($rootScope.iragarkiBotea>0){
-                $rootScope.iragarkiBotea-=1;
+            if($rootScope.user.get("trincaCounter")>0){
+                $rootScope.user.set("trincaCounter", $rootScope.user.get("trincaCounter")-1);
+                $rootScope.user.save();
                 TicketService.addTicket($scope, $rootScope.user, draw);
-                $scope.$apply();
             }
             else{
                 alert('No has activado esta opción! ;)');

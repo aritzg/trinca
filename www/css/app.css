@@ -221,24 +221,29 @@ ion-nav-view {
 }
 
 
-/*PARALLAX*/
-section.parallax {
-    position: relative;
-    top: 200px;
-    width: 300px;
-    /*height: 1000px;*/
+/*TRINCA COUNTER*/
+#counter-container{
+    text-align: center;
+    font-size: 1em;
+}
+
+#counter-container #counter{
+    border-radius: 50%;
+    width:100px;
+    height:100px;
     margin: 0 auto;
+    border: 5px solid #666;
+    color: #666;
+    text-align: center;
+    font: 32px Arial, sans-serif;
+    padding-top: 10%;
+    margin-top: 10px;
 }
 
-
-section.parallax .pixel {
-    position: absolute;
-    width: 15px;
-    height: 15px;
-    border-radius: 15px;
-    background: blue;
+/*ALERT*/
+.alert .alert-image img{
+    width:100%;
 }
-
 
 
 

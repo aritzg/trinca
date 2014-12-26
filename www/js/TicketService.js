@@ -29,7 +29,6 @@ angular.module('trinca.services.tickets', [])
             addTicket: function ($scope, user, draw, sum) {
 
                 sum = (typeof sum === "undefined") ? 1 : sum;
-                alert(sum);
                 var Ticket = Parse.Object.extend("Ticket");
                 var ticket = new Ticket();
                 ticket.set("drawId", draw);
