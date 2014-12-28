@@ -3,9 +3,15 @@
 
 
 <ion-list>
-    <ion-item class="trinca-item" ng-repeat="draw in closedDraws">
+    <ion-item 
+        class="trinca-item" 
+        ng-repeat="draw in closedDraws"
+        ng-click="toggleDraw(draw)"
+        ng-class="{active: isDrawShown(draw)}">
+        
 
-        <div class="row titulo">
+        <div class="row {{titleClass(draw)}}">
+            <i class="icon" ng-class="isDrawShown(draw) ? 'ion-minus':  'ion-plus'"></i>
             <div class="col col-33">
                 TRINCA#{{draw.get("drawNum")}}
             </div>
@@ -14,179 +20,181 @@
             </div>
         </div>
 
-        <div class="row">
-            <div class="col">
-                Apuesta Trinca:
+        <div class="draw-info"
+                ng-show="isDrawShown(draw)">
+            <div class="row">
+                <div class="col">
+                    Apuesta Trinca:
+                </div>
             </div>
+            <div class="row">
+                <div class="col figura bola">
+                    <div class="num-outer">
+                        <div class="num">
+                            {{draw.get("betNum1")}}
+                        </div>
+                    </div>
+                </div>
+                <div class="col figura bola">
+                    <div class="num-outer">
+                        <div class="num">
+                            {{draw.get("betNum2")}}
+                        </div>
+                    </div>
+                </div>
+                <div class="col figura bola">
+                    <div class="num-outer">
+                        <div class="num">
+                            {{draw.get("betNum3")}}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col figura bola">
+                    <div class="num-outer">
+                        <div class="num">
+                            {{draw.get("betNum4")}}
+                        </div>
+                    </div>
+                </div>
+                <div class="col figura bola">
+                    <div class="num-outer">
+                        <div class="num">
+                            {{draw.get("betNum5")}}
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col figura estrella">
+                    <div class="num-outer">
+                        <div class="num">
+                            {{draw.get("betStar1")}}
+                        </div>
+                    </div>
+                </div>
+                <div class="col figura estrella">
+                    <div class="num-outer">
+                        <div class="num">
+                            {{draw.get("betStar2")}}
+                        </div>
+                    </div>
+                </div>
+               
+
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    Resultado real del sorteo:
+                </div>
+            </div>
+            <div class="row">
+                <div class="col figura bola">
+                    <div class="num-outer">
+                        <div class="num">
+                            {{draw.get("realNum1")}}
+                        </div>
+                    </div>
+                </div>
+                <div class="col figura bola">
+                    <div class="num-outer">
+                        <div class="num">
+                            {{draw.get("realNum2")}}
+                        </div>
+                    </div>
+                </div>
+                <div class="col figura bola">
+                    <div class="num-outer">
+                        <div class="num">
+                            {{draw.get("realNum3")}}
+                        </div>
+                    </div>
+                </div>
+                <div class="col figura bola">
+                    <div class="num-outer">
+                        <div class="num">
+                            {{draw.get("realNum4")}}
+                        </div>
+                    </div>
+                </div>
+                <div class="col figura bola">
+                    <div class="num-outer">
+                        <div class="num">
+                            {{draw.get("realNum5")}}
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col figura estrella">
+                    <div class="num-outer">
+                        <div class="num">
+                            {{draw.get("realStar1")}}
+                        </div>
+                    </div>
+                </div>
+                <div class="col figura estrella">
+                    <div class="num-outer">
+                        <div class="num">
+                            {{draw.get("realStar2")}}
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="row info-row">
+                <div class="col col-50">
+                    <div class="item item-avatar info-box">
+                        <img src="img/counter.png">
+                        <h2 class="title">tus TRINCAS</h2>
+                        <p class="value">{{sumMyTickets(draw)}}</p>
+                    </div>
+                </div>
+                <div class="col col-50">
+                    <div class="item item-avatar info-box">
+                        <img src="img/percent.png">
+                        <h2 class="title">Tu probabilidad</h2>
+                        <p class="value">{{getMyProbForDraw(draw)}}</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row info-row">
+                <div class="col col-50">
+                    <div class="item item-avatar info-box">
+                        <img src="img/crowd.png">
+                        <h2 class="title">Han participado</h2>
+                        <p class="value">{{draw.get("participantCount")}}</p>
+                    </div>
+                </div>
+                <div class="col col-50">
+                    <div class="item item-avatar info-box" >
+                        <img src="img/euro.png">
+                        <h2 class="title">Premio entregado</h2>
+                        <p class="value">{{draw.get("prize")}}</p>
+
+                    </div>
+                </div>
+            </div>
+
+            <!--
+            <div class="row info-row">
+                <div class="col">
+                    <div class="item item-avatar">
+                        <img src="img/winner.png">
+
+                        <p>Ganador</p>
+
+                        <h2>{{draw.get("winner").get("email")}}</h2>
+
+                    </div>
+                </div>
+            </div>
+            -->
         </div>
-        <div class="row">
-            <div class="col figura bola">
-                <div class="num-outer">
-                    <div class="num">
-                        {{draw.get("betNum1")}}
-                    </div>
-                </div>
-            </div>
-            <div class="col figura bola">
-                <div class="num-outer">
-                    <div class="num">
-                        {{draw.get("betNum2")}}
-                    </div>
-                </div>
-            </div>
-            <div class="col figura bola">
-                <div class="num-outer">
-                    <div class="num">
-                        {{draw.get("betNum3")}}
-                    </div>
-                </div>
-            </div>
-
-            <div class="col figura bola">
-                <div class="num-outer">
-                    <div class="num">
-                        {{draw.get("betNum4")}}
-                    </div>
-                </div>
-            </div>
-            <div class="col figura bola">
-                <div class="num-outer">
-                    <div class="num">
-                        {{draw.get("betNum5")}}
-                    </div>
-                </div>
-            </div>
-
-
-            <div class="col figura estrella">
-                <div class="num-outer">
-                    <div class="num">
-                        {{draw.get("betStar1")}}
-                    </div>
-                </div>
-            </div>
-            <div class="col figura estrella">
-                <div class="num-outer">
-                    <div class="num">
-                        {{draw.get("betStar2")}}
-                    </div>
-                </div>
-            </div>
-           
-
-        </div>
-
-        <div class="row">
-            <div class="col">
-                Resultado real del sorteo:
-            </div>
-        </div>
-        <div class="row">
-            <div class="col figura bola">
-                <div class="num-outer">
-                    <div class="num">
-                        {{draw.get("realNum1")}}
-                    </div>
-                </div>
-            </div>
-            <div class="col figura bola">
-                <div class="num-outer">
-                    <div class="num">
-                        {{draw.get("realNum2")}}
-                    </div>
-                </div>
-            </div>
-            <div class="col figura bola">
-                <div class="num-outer">
-                    <div class="num">
-                        {{draw.get("realNum3")}}
-                    </div>
-                </div>
-            </div>
-            <div class="col figura bola">
-                <div class="num-outer">
-                    <div class="num">
-                        {{draw.get("realNum4")}}
-                    </div>
-                </div>
-            </div>
-            <div class="col figura bola">
-                <div class="num-outer">
-                    <div class="num">
-                        {{draw.get("realNum5")}}
-                    </div>
-                </div>
-            </div>
-
-
-            <div class="col figura estrella">
-                <div class="num-outer">
-                    <div class="num">
-                        {{draw.get("realStar1")}}
-                    </div>
-                </div>
-            </div>
-            <div class="col figura estrella">
-                <div class="num-outer">
-                    <div class="num">
-                        {{draw.get("realStar2")}}
-                    </div>
-                </div>
-            </div>
-
-        </div>
-
-
-        <div class="row info-row">
-            <div class="col col-50">
-                <div class="item item-avatar info-box">
-                    <img src="img/counter.png">
-                    <h2 class="title">tus TRINCAS</h2>
-                    <p class="value">{{sumMyTickets(draw)}}</p>
-                </div>
-            </div>
-            <div class="col col-50">
-                <div class="item item-avatar info-box">
-                    <img src="img/percent.png">
-                    <h2 class="title">Tu probabilidad</h2>
-                    <p class="value">{{getMyProbForDraw(draw)}}</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="row info-row">
-            <div class="col col-50">
-                <div class="item item-avatar info-box">
-                    <img src="img/crowd.png">
-                    <h2 class="title">Han participado</h2>
-                    <p class="value">{{draw.get("participantCount")}}</p>
-                </div>
-            </div>
-            <div class="col col-50">
-                <div class="item item-avatar info-box" >
-                    <img src="img/euro.png">
-                    <h2 class="title">Premio entregado</h2>
-                    <p class="value">{{draw.get("prize")}}</p>
-
-                </div>
-            </div>
-        </div>
-
-        <!--
-        <div class="row info-row">
-            <div class="col">
-                <div class="item item-avatar">
-                    <img src="img/winner.png">
-
-                    <p>Ganador</p>
-
-                    <h2>{{draw.get("winner").get("email")}}</h2>
-
-                </div>
-            </div>
-        </div>
-        -->
-
     </ion-item>
 </ion-list>
 

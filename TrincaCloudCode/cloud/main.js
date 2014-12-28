@@ -49,12 +49,6 @@ Parse.Cloud.afterDelete("Message", function (request) {
 
 });
 
-Parse.Cloud.afterSave("SentMessage", function (request) {
-    console.log("Got installationId " + request.installationId);
-    console.log("Got master " + request.master);
-    console.log("Got user " + request.user.get("username"));
-});
-
 Parse.Cloud.afterSave("_User", function (request) {
     
     if (!request.object.existed()) {

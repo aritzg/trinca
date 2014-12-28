@@ -210,12 +210,12 @@
                     }
 
                 })
-                .state('menu.ad_test', {
-                    url: '/ad_test',
+                .state('menu.settings', {
+                    url: '/settings',
                     views: {
                         'menuContent': {
-                            templateUrl: "templates/ad_test.html",
-                            controller: "AdTestCtrl"
+                            templateUrl: "templates/settings.html",
+                            controller: "SettingsCtrl"
                         }
                     }
 

@@ -330,7 +330,7 @@ angular.module('trinca.controllers', [])
     })
 
 
-    .controller('HistCtrl', function ($scope, $state,$http, $ionicLoading, $rootScope, TicketService) {
+    .controller('HistCtrl', function ($scope, $rootScope, $state, $http, $ionicLoading, $rootScope, TicketService) {
         $scope.sumMyTickets = function (draw) {
             return TicketService.sumMyTickets(draw);
         }
@@ -338,6 +338,29 @@ angular.module('trinca.controllers', [])
         $scope.getMyProbForDraw = function (draw) {
             return TicketService.getMyProbForDraw(draw);
         }
+
+        $scope.toggleDraw = function(draw) {
+            if ($scope.isDrawShown(draw)) {
+                $scope.shownDraw = null;
+            } else {
+                $scope.shownDraw = draw;
+            }
+        };
+
+        $scope.isDrawShown = function(draw) {
+            return $scope.shownDraw === draw;
+        };
+
+        $scope.titleClass = function(draw) {
+            if(!draw.get("winner")){
+                return "titulo-no-winner";
+            }
+            else if($rootScope.user.id==draw.get("winner").id){
+                return "titulo-winner";
+            }else{
+                return "titulo";
+            }
+        };
 
 
 
@@ -421,6 +444,28 @@ angular.module('trinca.controllers', [])
         $scope.isReadClass = function (sentMessage){
             return SentMessageService.isReadClass(sentMessage);
         }
+
+
+    })
+    .controller('SettingsCtrl', function ($scope, $rootScope) {
+        $scope.form = {};
+        $scope.form.alias=$rootScope.user.get("alias");
+
+        $scope.getAlias = function (){
+            if(typeof $scope.form.alias === "undefined"){
+                return "<<Ponte un alias!>>";
+            }
+            else {
+                return $scope.form.alias;
+            }
+        }
+
+        $scope.save = function (){
+            $rootScope.user.set("alias", $scope.form.alias);
+            $rootScope.user.save();
+            alert("Ajustes modificados!");
+        }
+        
 
 
     });

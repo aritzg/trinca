@@ -59,8 +59,14 @@ ion-nav-view {
 .trinca-item .titulo{
     background-color: #f0b840;
 }
+.trinca-item .titulo-winner{
+    background-color: #92F475;
+}
+.trinca-item .titulo-no-winner{
+    background-color: #F47583;
+}
 
-.trinca-item .titulo .fecha{
+.trinca-item .fecha{
     text-align: right;
 }
 

@@ -1,104 +1,54 @@
-<ion-view view-title="Trinca">
-    <ion-content has-header="true">
 
-        <ion-item class="trinca-item">
-        <div class="row titulo">
-            Más repetidos
-        </div>
+<ion-tabs class="tabs-light tabs-text-only tabs-top">
 
-
-        <div class="row trinca-item">
-            <div class="col figura bola">
-                <div class="num-outer">
-                    <div class="num">
-                        {{mostFreq.get("betNum1")}}
+    <ion-tab title="Info">
+        <ion-content has-header="true"  padding="true">
+            <div style="padding-top:83px"></div>
+            <div class="row info-row">
+                <div class="col col-50">
+                    <div class="item item-avatar info-box" >
+                        <img src="img/crowd.png"/>
+                        <h2 class="title">Usuarios</h2>
+                        <p class="value" style="font-size: 25px">{{userCount}}</p>
                     </div>
                 </div>
-            </div>
-            <div class="col figura bola">
-                <div class="num-outer">
-                    <div class="num">
-                        {{mostFreq.get("betNum2")}}
-                    </div>
-                </div>
-            </div>
-            <div class="col figura bola">
-                <div class="num-outer">
-                    <div class="num">
-                        {{mostFreq.get("betNum3")}}
-                    </div>
-                </div>
-            </div>
-            <div class="col figura bola">
-                <div class="num-outer">
-                    <div class="num">
-                        {{mostFreq.get("betNum4")}}
-                    </div>
-                </div>
-            </div>
-            <div class="col figura bola">
-                <div class="num-outer">
-                    <div class="num">
-                        {{mostFreq.get("betNum5")}}
+                <div class="col col-50">
+                    <div class="item item-avatar info-box" >
+                        <img src="img/icon.png"/>
+                        <h2 class="title">Trincas activos</h2>
+                        <p class="value" style="font-size: 25px">{{activeDraws}}</p>
                     </div>
                 </div>
             </div>
 
-
-            <div class="col figura estrella">
-                <div class="num-outer">
-                    <div class="num">
-                        {{mostFreq.get("betStar1")}}
+            <div class="row info-row">
+                <div class="col col-50">
+                    <div class="item item-avatar info-box" >
+                        <img src="img/counter.png"/>
+                        <h2 class="title">Trincas jugados</h2>
+                        <p class="value" style="font-size: 25px">{{playedDraws}}</p>
+                    </div>
+                </div>
+                <div class="col col-50">
+                    <div class="item item-avatar info-box" >
+                        <img src="img/euro.png"/>
+                        <h2 class="title">Trinca ha repartido</h2>
+                        <p class="value" style="font-size: 25px">{{totalPrize}}€</p>
                     </div>
                 </div>
             </div>
-            <div class="col figura estrella">
-                <div class="num-outer">
-                    <div class="num">
-                        {{mostFreq.get("betStar2")}}
-                    </div>
-                </div>
-            </div>
+        </ion-content>
+    </ion-tab>
 
-        </div>
-        </ion-item>
+    <ion-tab title="Ranking">
+        <ion-content has-header="true"  padding="true">
+         <div style="padding-top:80px"></div>
+         Aún no tenemos un Ranking!
+     </ion-content>
+ </ion-tab>
 
-
-        <div class="row info-row">
-            <div class="col col-50">
-                <div class="item item-avatar info-box" >
-                    <img src="img/crowd.png">
-                    <h2 class="title">Usuarios</h2>
-                    <p class="value" style="font-size: 25px">{{userCount}}</p>
-                </div>
-            </div>
-            <div class="col col-50">
-                <div class="item item-avatar info-box" >
-                    <img src="img/icon.png">
-                    <h2 class="title">Trincas activos</h2>
-                    <p class="value" style="font-size: 25px">{{activeDraws}}</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="row info-row">
-            <div class="col col-50">
-                <div class="item item-avatar info-box" >
-                    <img src="img/counter.png">
-                    <h2 class="title">Trincas jugados</h2>
-                    <p class="value" style="font-size: 25px">{{playedDraws}}</p>
-                </div>
-            </div>
-            <div class="col col-50">
-                <div class="item item-avatar info-box" >
-                    <img src="img/euro.png">
-                    <h2 class="title">Trinca ha repartido</h2>
-                    <p class="value" style="font-size: 25px">{{totalPrize}}€</p>
-                </div>
-            </div>
-        </div>
+</ion-tabs>
 
 
-    </ion-content>
 
-</ion-view>
+
