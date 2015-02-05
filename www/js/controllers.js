@@ -287,6 +287,7 @@ angular.module('trinca.controllers', [])
             var dialogOpts = {
                 method: "feed",
                 link: "https://play.google.com/store/apps/details?id=net.sareweb.trinca",
+                picture:"https://s3.amazonaws.com/ugc_production.parse.com/parse_app_metadata/119838/icon.png?1418911666",
                 caption: "Boletos de Euromillones Gratis con Trinca!",
                 description: "He jugado gratis en Trinca para los números " 
                                 + draw.get("betNum1") + ","
