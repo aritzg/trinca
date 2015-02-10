@@ -109,49 +109,45 @@ Parse.Cloud.afterSave("Draw", function (request) {
                 winner.fetch({
                   success: function(winner) {
                     console.log("And the winner is " + winner.get('email'));
+   
+                    var Message = Parse.Object.extend("Message");
+                    var message = new Message();
+                    message.set('title','Sorteado Trinca#' + request.object.get('drawNum'));
+                    message.set('text', 'Se ha sorteado el Trinca#' + request.object.get('drawNum') + '. El ganador se lleva el boleto ' + request.object.get('betNum1') + ', '+ request.object.get('betNum2') + ', '+ request.object.get('betNum3') + ', '+ request.object.get('betNum4') + ', '+ request.object.get('betNum5') + ' y estrellas ' + request.object.get('betStar1') + ', '+ request.object.get('betStar2'));
+                    message.set('type','broadcast');
+                    message.set('state','new');
+                    message.save({success: function () {
+                    }});
 
-                    if(request.object.get('prize')>0){    
-                        var Message = Parse.Object.extend("Message");
-                        var message = new Message();
-                        message.set('title','Finalizado Trinca#' + request.object.get('drawNum'));
-                        message.set('text', 'Se ha finalizado el Trinca#' + request.object.get('drawNum') + '. El ganador se lleva un boleto premiado con ' + request.object.get('prize') + ' Euros.');
-                        message.set('type','broadcast');
-                        message.set('state','new');
-                        message.save({success: function () {
+                    message = new Message();
+                    var title = 'Felicifades! Ganador de Trinca#' + request.object.get('drawNum');
+                    message.set('title', title);
+                    var msgToWinner = 'Has ganado elTrinca#' + request.object.get('drawNum') + '. Nos pondremos en contacto para entregarte el boleto ' + request.object.get('betNum1') + ', '+ request.object.get('betNum2') + ', '+ request.object.get('betNum3') + ', '+ request.object.get('betNum4') + ', '+ request.object.get('betNum5') + ' y estrellas ' + request.object.get('betStar1') + ', '+ request.object.get('betStar2');
+                    message.set('text', msgToWinner);
+                    message.set('type','prize');
+                    message.set('state','new');
+                    message.save({success: function () {
+                        var SentMessage = Parse.Object.extend("SentMessage");
+                        var sentMessage = new SentMessage();
+                        sentMessage.set('toUser', winner);
+                        sentMessage.set('message', message);
+                        sentMessage.save({success: function () {
                         }});
+                    }});
+                    
+                    var pushQuery = new Parse.Query(Parse.Installation);
+                    pushQuery.equalTo('user', winner);
+                    Parse.Push.send({
+                      where: pushQuery,
+                      data: {
+                        alert: msgToWinner,
+                        title: title
+                      }
+                    });
 
-                        message = new Message();
-                        var title = 'Felicifades! Ganador de Trinca#' + request.object.get('drawNum');
-                        message.set('title', title);
-                        var msgToWinner = 'Has ganado elTrinca#' + request.object.get('drawNum') + '. Nos pondremos en contacto para entregarte el boleto premiado con ' + request.object.get('prize') + ' Euros.';
-                        message.set('text', msgToWinner);
-                        message.set('type','prize');
-                        message.set('state','new');
-                        message.save({success: function () {
-                            var SentMessage = Parse.Object.extend("SentMessage");
-                            var sentMessage = new SentMessage();
-                            sentMessage.set('toUser', winner);
-                            sentMessage.set('message', message);
-                            sentMessage.save({success: function () {
-                            }});
-                        }});
-                        
-                        var pushQuery = new Parse.Query(Parse.Installation);
-                        pushQuery.equalTo('user', winner);
-                        Parse.Push.send({
-                          where: pushQuery,
-                          data: {
-                            alert: msgToWinner,
-                            title: title
-                          }
-                        });
-                    }
-                    else{
-                        console.log('Premio = 0 --> No hay sorteo :(');
-                    }
 
                     request.object.set('closedDate', new Date());
-                    request.object.set('state', 'finished');
+                    request.object.set('state', 'drawn');
                     request.object.set('winner', winner);
 
                     request.object.save({success: function () {
@@ -209,4 +205,20 @@ Parse.Cloud.afterSave("Ticket", function (request) {
 Parse.Cloud.job("checkResult", function(request, status) {
   console.log('Checking Result');
   status.success("Results checked");
+});
+
+Parse.Cloud.job("assignWinnerAndClose", function(request, status) {
+    var now = new Date();
+    query = new Parse.Query('Draw');
+    query.equalTo('state', 'ongoing');
+    query.doesNotExist("winner");
+    query.lessThan("closedDate", now);
+    query.each(function(result) {
+        result.set("state", "closed");
+        return result.save();
+    }).then(function() {
+        status.success("OK");
+    }, function(error) {
+        status.error("Uh oh, something went wrong.");
+    });
 });
